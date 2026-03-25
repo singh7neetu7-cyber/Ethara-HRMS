@@ -47,7 +47,7 @@ import { SidebarComponent } from './components/sidebar.component';
       height: 64px;
       padding: 0 1rem;
       backdrop-filter: blur(8px);
-      background: rgba(8, 18, 38, 0.85);
+      background: rgba(240, 247, 255, 0.85);
       border-bottom: 1px solid rgba(82, 120, 255, 0.2);
     }
 
