@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://etharabackend-phi.vercel.app",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

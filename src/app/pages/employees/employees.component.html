@@ -1,0 +1,77 @@
+<h1 class="page-title">Workforce Registry</h1>
+
+<div class="grid-2">
+  <div class="card" style="background: #ffffff; border-left: 4px solid #3b82f6;">
+    <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 800; color: #1e293b;">Register New Personnel</h2>
+    @if (successMessage) {
+      <div class="alert alert-success">{{ successMessage }}</div>
+    }
+    @if (formError) {
+      <div class="alert alert-error">{{ formError }}</div>
+    }
+    <form (ngSubmit)="onSubmit()" novalidate style="display: flex; flex-direction: column; gap: 1.25rem;">
+      <div class="form-group">
+        <label class="label">Resource ID</label>
+        <input type="text" class="input" [(ngModel)]="form.employee_id" name="employee_id" required placeholder="e.g. EMP001" style="background: #f8fafc; border-color: #e2e8f0;" />
+      </div>
+      <div class="form-group">
+        <label class="label">Full Legal Name</label>
+        <input type="text" class="input" [(ngModel)]="form.full_name" name="full_name" required placeholder="Full Name" style="background: #f8fafc; border-color: #e2e8f0;" />
+      </div>
+      <div class="form-group">
+        <label class="label">Corporate Email</label>
+        <input type="email" class="input" [(ngModel)]="form.email" name="email" required placeholder="email@company.com" style="background: #f8fafc; border-color: #e2e8f0;" />
+      </div>
+      <div class="form-group">
+        <label class="label">Organizational Unit</label>
+        <select class="select" [(ngModel)]="form.department" name="department" required style="background: #f8fafc; border-color: #e2e8f0;">
+          <option value="" disabled>Select Unit</option>
+          @for (dept of departments; track dept.id) {
+            <option [value]="dept.name">{{ dept.name }}</option>
+          }
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; padding: 0.75rem 1.5rem;">Confirm Registration</button>
+    </form>
+  </div>
+
+  <div class="card" style="background: #ffffff;">
+    <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 800; color: #1e293b;">Active Workforce Directory</h2>
+    @if (loading) {
+      <div class="loading-spinner"></div>
+    } @else if (listError) {
+      <div class="error-state" style="color: #ef4444;">{{ listError }}</div>
+    } @else if (employees.length === 0) {
+      <div class="empty-state">No personnel records found. Use the registration form to add resources.</div>
+    } @else {
+      <div class="table-wrap" style="border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <table class="table">
+          <thead>
+            <tr style="background: #f8fafc;">
+              <th style="color: #475569; font-weight: 800;">ID</th>
+              <th style="color: #475569; font-weight: 800;">Name</th>
+              <th style="color: #475569; font-weight: 800;">Organizational Unit</th>
+              <th style="color: #475569; font-weight: 800;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (emp of employees; track emp.id) {
+              <tr style="border-bottom: 1px solid #f1f5f9;">
+                <td style="font-weight: 700; color: #64748b; font-size: 0.85rem;">{{ emp.employee_id }}</td>
+                <td>
+                  <div style="font-weight: 700; color: #1e293b;">{{ emp.full_name }}</div>
+                  <div style="font-size: 0.72rem; color: #94a3b8; font-weight: 600;">{{ emp.email }}</div>
+                </td>
+                <td>
+                  <span [ngStyle]="getDeptStyles(emp.department)">{{ emp.department }}</span>
+                </td>                <td>
+                  <button type="button" class="btn btn-sm" (click)="delete(emp)" style="background: #fee2e2; color: #dc2626; font-weight: 800; border: 1px solid #fecaca;">Terminate</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>
