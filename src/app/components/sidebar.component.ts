@@ -16,7 +16,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     </button>
     <nav class="sidebar" [class.open]="isOpen">
       <div class="sidebar-header">
-        <h1>Ethara HRMS</h1>
+        <div class="logo-container">
+          <span class="logo-icon">E</span>
+          <h1>Ethara HRMS</h1>
+        </div>
       </div>
 
       <ul class="nav-menu">
@@ -83,7 +86,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       </ul>
 
       <div class="sidebar-footer">
-        <p>HRMS v2.0</p>
+        <p>Ethara HRMS v2.0</p>
       </div>
     </nav>
   `,
@@ -121,19 +124,36 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     }
 
     .sidebar-header {
-      padding: 2.2rem 1.75rem 1.75rem;
+      padding: 1.5rem;
       border-bottom: 1px solid #e0eefc;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: #e0f2fe;
+      color: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
     }
 
     .sidebar-header h1 {
       margin: 0;
-      color: #a9bce7;
-      font-size: 1.35rem;
+      color: #1e293b;
+      font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #a9bce7, #4f46e5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
     }
 
     .nav-menu {

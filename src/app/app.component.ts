@@ -14,7 +14,7 @@ import { SidebarComponent } from './components/sidebar.component';
           <span></span>
           <span></span>
         </button>
-        <div class="mobile-title">HRMS</div>
+        <div class="mobile-title">Ethara HRMS</div>
       </header>
       <app-sidebar [isOpen]="sidebarOpen" (closeSidebar)="closeSidebar()"></app-sidebar>
       <main class="main-content">
